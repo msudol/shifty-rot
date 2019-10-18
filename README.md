@@ -11,7 +11,7 @@ The running key variant of the Vigenère cipher was also considered unbreakable 
 If multiple keys are used, the effective key length is the least common multiple of the lengths of the individual keys. For example, using the two keys GO and CAT, whose lengths are 2 and 3, one obtains an effective key length of 6 (the least common multiple of 2 and 3). This can be understood as the point where both keys line up.
 
 ```
-Plaintext: 	ATTACKATDAWN
+Plaintext:  ATTACKATDAWN
 Key 1: 	    GOGOGOGOGOGO
 Key 2: 	    CATCATCATCAT
 Ciphertext: IHSQIRIHCQCU
