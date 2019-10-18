@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Shifty ROT</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script src="js/cipher.js"></script>
+    <script src="js/events.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+<div class="row">
+
+    <div class="col-sm-8">
+
+        <h2>Shifty ROT: Running Key Vigenere style cipher with variations.</h2>
+        <form id="cipherForm" class="needs-validation" novalidate>
+
+            <div class="form-group">
+                <label for="key1">Key 1</label>
+                <input type="text" class="form-control" id="key1" value="cat">
+            </div>
+            
+            <div class="form-group">
+                <label for="key2">Key 2</label>
+                <input type="text" class="form-control" id="key2" value="dog">
+            </div>
+            
+            <div class="form-group">
+                <label for="alpha">Alphabet (Character Set)</label>
+                <input type="text" class="form-control" id="alpha" value="abcdefghijklmnopqrstuvwxyz">
+            </div>  
+            
+            <div class="form-group">
+                <label for="cipherText">Cipher Text</label>
+                <textarea class="form-control" id="cipherText" rows="3">fish</textarea>
+            </div>  
+
+            <div class="form-group">
+                <label for="resultText">Result Text</label>
+                <textarea class="form-control" id="resultText" rows="3"></textarea>
+            </div>  
+            
+            <div class="form-group">
+                <label for="resultShifts">Result ROT Shifts</label>
+                <textarea class="form-control" id="resultShifts" rows="3"></textarea>
+            </div>  
+
+            <div class="form-group">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="caseOptions" id="radioCase" value="true">
+                    <label class="form-check-label" for="radioCase">Case Sensitive</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="caseOptions" id="radioIgnore" value="false" checked>
+                    <label class="form-check-label" for="radioIgnore">Ignore Case</label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ioMethod" id="string" value="true" checked>
+                    <label class="form-check-label" for="string">String</label>
+                    </div>        
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ioMethod" id="base64" value="false">
+                    <label class="form-check-label" for="base64">Base64</label>
+                </div>        
+            </div>            
+          
+            
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="encodeOptions" id="radioEncode" value="true" checked>
+                <label class="form-check-label" for="radioEncode">Encode</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="encodeOptions" id="radioDecode" value="false">
+                <label class="form-check-label" for="radioDecode">Decode</label>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Submit form</button>
+          
+        </form>
+    </div>
+
+    <hr>
+
+    <div class="col-sm-4">
+        
+        <h2>Usage</h2>
+        
+        <p>This running key cipher uses a Vigenere type cyper based off of a ROT shift 
+        that is pseudo-randomized through the use of 2 keys instead of 1.</p>
+        
+        <p>Additionally, we can implement any types of "alphabet" or character set 
+        for additional complexity, ultimately making this really a 3 key cipher</p>
+        
+        
+        <h2>Presets</h2>
+
+        <form id="presetsForm" class="needs-validation" novalidate>
+
+            <div class="form-group">
+                <div class="form-check form-check">
+                    <input class="form-check-input" type="radio" name="presets" id="fullAlpha" value="fullAlpha" checked>
+                    <label class="form-check-label" for="fullAlpha">Complete Alphabet</label>
+                </div>
+                <div class="form-check form-check">
+                    <input class="form-check-input" type="radio" name="presets" id="fullAlphaNum" value="fullAlphaNum">
+                    <label class="form-check-label" for="fullAlphaNum">Complete Alpha-Numeric</label>
+                </div>
+                <div class="form-check form-check">
+                    <input class="form-check-input" type="radio" name="presets" id="printableASCII" value="printableASCII">
+                    <label class="form-check-label" for="printableASCII">Printable ASCII</label>
+                </div>        
+                <div class="form-check form-check">
+                    <input class="form-check-input" type="radio" name="presets" id="default" value="default">
+                    <label class="form-check-label" for="default">Default</label>
+                </div>        
+            </div>
+
+            <button class="btn btn-primary" type="submit">Select Preset</button>
+
+        </form>
+        
+    
+    </div>
+
+</div>
+</div>
+
+</body>
+
+</html>
