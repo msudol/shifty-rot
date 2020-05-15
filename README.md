@@ -25,4 +25,4 @@ Additional security can be added by altering the alphabet, from [A-Z] to [a-zA-Z
 
 ## Using
 
-The web based form is pretty simple to use, just follow the instructions on screen.
+The web based form is pretty simple to use, just follow the instructions on screen. A working example is available here: https://msudol.com/projects/shifty/
