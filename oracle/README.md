@@ -1,6 +1,6 @@
-# Shifty ROT
+# Shifty ROT Oracle
 
-A double keyed, running key Vigenere style cipher encoder/decoder just for fun.
+An Implementation of this code that only encodes but does not decode.
 
 ## History
 
