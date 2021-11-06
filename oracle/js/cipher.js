@@ -1,9 +1,6 @@
 $(function() {
-
     $("#cipherForm").submit(function( event ) {
-
         event.preventDefault();
-        
         var key1 = "Python";     
         var key2 = "JavaScript";
         var alpha = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
@@ -11,57 +8,38 @@ $(function() {
         var encodeOptions = "true";
         var caseOptions = "true"
         var ioMethod = "false";
-        
-        // check fields for validity before submitting.
-        // especially the alphabet - no duplicate chars for example would be a good one.
-
         var res = coder(key1, key2, alpha, cipher, encodeOptions, caseOptions, ioMethod);
-        $("#resultText").val(res[0]);
-        //$("#resultShifts").val(res[1]);
-        
+        $("#resultText").val(res[0]);  
     });
-
 });
 
-// better modulo function for javascript that can do negative wrap around
 const mod = (x, n) => (x % n + n) % n
 
-// main function taking the form values
 var coder = function(key1, key2, alpha, cipher, encodeOpts, caseOpts, ioMethod) {
-    
-    // make bool out of strings
+
     var doenc = (encodeOpts === 'true');
     var docase = (caseOpts === 'true');
     var iomethod = (ioMethod === 'true');
-    
-    //console.log(key1, key2, alpha, cipher, doenc, docase);
+
     if (!iomethod) {
         if (!doenc) {
             cipher = atob(cipher);
         }
     }
 
-    // if ignore case - make our keys and alphabet uppercase
     if (!docase) {
-        //console.log("uppercasing alphabet and keys");
         alpha = alpha.toUpperCase();
         key1 = key1.toUpperCase();
         key2 = key2.toUpperCase();
-        //console.log(alpha, key1, key2);
     }    
-    
-    // make arrays out of our keys, alphabet, and ciphertext
+   
     var alphabet = Array.from(alpha);
     var aKey = Array.from(key1);
     var bKey = Array.from(key2);
     var cText = Array.from(cipher);
-    
-    // key cleaning based on what matches in alphabet - excess characters in keys are stripped out
+   
     aKey = keyCleaner(aKey, alphabet);
     bKey = keyCleaner(bKey, alphabet);
-
-    //console.log(aKey);
-    //console.log(bKey);
     
     var buildCipher = [];
     var shifts = [];
@@ -92,9 +70,6 @@ var coder = function(key1, key2, alpha, cipher, encodeOpts, caseOpts, ioMethod) 
         shifts.push(res[1]);
 
     }
-    
-    //console.log(buildCipher);
-    //console.log(shifts);
     
     var complete = buildCipher.join('');
     
